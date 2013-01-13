@@ -13,10 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\cGame">
+      <UniqueIdentifier>{3a0f2030-5b84-4ae0-93e5-d3806d5e3a4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cGlobalData">
+      <UniqueIdentifier>{b55423ce-dfae-402b-8fc5-a758082913bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cGame">
+      <UniqueIdentifier>{50f426d0-1451-4f37-bdb1-c0fe79bfddb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cGlobalData">
+      <UniqueIdentifier>{2f3924db-e773-4713-804c-0e553257d5b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cGame.cpp">
+      <Filter>Source Files\cGame</Filter>
+    </ClCompile>
+    <ClCompile Include="cGlobalData.cpp">
+      <Filter>Source Files\cGlobalData</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cGame.h">
+      <Filter>Header Files\cGame</Filter>
+    </ClInclude>
+    <ClInclude Include="cGlobalData.h">
+      <Filter>Header Files\cGlobalData</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

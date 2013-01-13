@@ -12,7 +12,7 @@
 
 int main()
 {
-	std::cout << "Hello World!\n";
-	system("pause");
+	std::cout << "Competition 10!\n";
+
 	return 0;
 }
