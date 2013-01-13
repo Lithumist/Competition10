@@ -1,0 +1,8 @@
+# .gitignore file
+Debug/
+Release/
+ipch/
+C10Engine/Debug/
+C10Engine/Release/
+*.opensdf
+*.sdf
