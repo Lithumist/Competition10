@@ -38,8 +38,14 @@ public:
 	cGame();
 
 	// methods
-	void newGame();
-	bool loadGame();
+	bool startGame();
+	void endGame();
+
+	// loop
+	bool loop();
+	bool events();
+	void step();
+	void draw();
 
 
 

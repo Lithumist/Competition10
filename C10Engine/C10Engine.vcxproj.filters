@@ -25,6 +25,12 @@
     <Filter Include="Source Files\cGlobalData">
       <UniqueIdentifier>{2f3924db-e773-4713-804c-0e553257d5b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\cPlayer">
+      <UniqueIdentifier>{9d482aae-6c4e-43cd-a3a4-4e0d2b140553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cPlayer">
+      <UniqueIdentifier>{8a2d2e26-b9c4-4e68-b454-84288a8bcfc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,6 +42,9 @@
     <ClCompile Include="cGlobalData.cpp">
       <Filter>Source Files\cGlobalData</Filter>
     </ClCompile>
+    <ClCompile Include="cPlayer.cpp">
+      <Filter>Source Files\cPlayer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cGame.h">
@@ -43,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="cGlobalData.h">
       <Filter>Header Files\cGlobalData</Filter>
+    </ClInclude>
+    <ClInclude Include="cPlayer.h">
+      <Filter>Header Files\cPlayer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
