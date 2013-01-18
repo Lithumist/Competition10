@@ -9,7 +9,8 @@
 
 
 // include
-
+#include "cGlobalData.h"
+#include <SFML/Graphics.hpp>
 
 
 
@@ -17,15 +18,33 @@
 class cPlayer
 {
 private:
+
+	cGlobalData* GlobalData;
+
+
 public:
+
+
 	cPlayer();
+
+	bool loadResources(cGlobalData* data);
+
+	void initialize();
 
 	void events();
 	void step();
 	void draw();
 
+
+
 	float x, y;
 	float xSpeed, ySpeed;
+
+
+
+	sf::Texture txtSheet;
+
+	sf::Sprite sprMain;
 
 
 };

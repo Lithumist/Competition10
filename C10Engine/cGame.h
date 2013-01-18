@@ -9,6 +9,7 @@
 
 // include
 #include "cGlobalData.h"
+#include "cPlayer.h"
 
 
 
@@ -18,6 +19,7 @@ class cGame
 public:
 	// main classes
 	cGlobalData GlobalData; // the data for the game
+	cPlayer Player; // the player
 
 
 	// other varibles
