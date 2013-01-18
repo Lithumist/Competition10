@@ -51,12 +51,44 @@ void cPlayer::initialize()
 // events
 void cPlayer::events()
 {
+	// update key states
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		keyW = true;
+	else
+		keyW = false;
+
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		keyA = true;
+	else
+		keyA = false;
+
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		keyS = true;
+	else
+		keyS = false;
+
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		keyD = true;
+	else
+		keyD = false;
 }
 
 
 // step
 void cPlayer::step()
 {
+	// add movement
+	if(keyW)
+		ySpeed += -PLAYER_ACCELERATION;
+	if(keyA)
+		xSpeed += -PLAYER_ACCELERATION;
+	if(keyS)
+		ySpeed += PLAYER_ACCELERATION;
+	if(keyD)
+		xSpeed += PLAYER_ACCELERATION;
+
+
+	// add final speeds on
 	x += xSpeed;
 	y += ySpeed;
 }

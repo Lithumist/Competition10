@@ -14,12 +14,18 @@
 
 
 
+// Player physics constants
+const float PLAYER_ACCELERATION = 0.2;
+
+
+
 // class
 class cPlayer
 {
 private:
 
 	cGlobalData* GlobalData;
+	bool keyW, keyA, keyS, keyD;
 
 
 public:
