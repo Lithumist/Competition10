@@ -7,6 +7,7 @@ cGame::cGame()
 {
 	cGlobalData GlobalData;
 	currentState = 0;
+	paused = false;
 }
 
 
@@ -57,7 +58,8 @@ bool cGame::loop()
 		if(!events())
 			break;
 		
-		step();
+		if(!paused)
+			step();
 
 		draw();
 	}
@@ -77,6 +79,10 @@ bool cGame::events()
 		// window closed
 		if(ev.type == sf::Event::Closed)
 			return false;
+		
+		// escape key pressed - toggle pause
+		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Escape)
+			paused = !paused;
 
 	}
 

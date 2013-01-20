@@ -33,6 +33,7 @@ public:
 		5	main menu
 	*/
 
+	bool paused;
 
 
 
