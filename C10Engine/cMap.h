@@ -10,6 +10,8 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include "cGlobalData.h"
 
 
 
@@ -25,18 +27,32 @@ const std::string MAP_HEADER = "C10_MAP";
 class cMap
 {
 private:
+
+	cGlobalData* GlobalData;
+
+
 public:
 
 	cMap();
+
+	bool loadResources(cGlobalData* data);
 
 
 	bool loadFromFile(std::string filename);
 	bool saveToFile(std::string filename);
 
-	std::string warpNorth, warpEast, warpSouth, warpWest;
+	void events();
+	void step();
+	void draw();
 
+
+
+
+
+	std::string warpNorth, warpEast, warpSouth, warpWest;
 	std::string mapName;
 
+	sf::IntRect Rectangles[220];
 	int layerGround[25][19];
 
 

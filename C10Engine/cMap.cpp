@@ -6,7 +6,37 @@
 // constructor
 cMap::cMap()
 {
+	// calculate rectangles
+	for(int ypos=0; ypos<44; ypos++)
+	{
+		for(int xpos=0; xpos<5; xpos++)
+		{
+			Rectangles[5*ypos+xpos].left	= xpos*32;
+			Rectangles[5*ypos+xpos].top		= ypos*32;
+			Rectangles[5*ypos+xpos].width	= 32;
+			Rectangles[5*ypos+xpos].height	= 32;
+		}
+	}
 }
+
+
+
+
+
+
+// loadResources
+bool cMap::loadResources(cGlobalData* data)
+{
+	GlobalData = data;
+
+	if(!txtGroundSheet.loadFromFile("resources/graphics/ground_sheet.png"))
+		return false;
+
+	sprGround.setTexture(txtGroundSheet);
+	return true;
+}
+
+
 
 
 
@@ -68,4 +98,45 @@ load_pass:
 bool cMap::saveToFile(std::string filename)
 {
 	return true;
+}
+
+
+
+
+
+
+
+
+// events
+void cMap::events()
+{
+}
+
+
+// step
+void cMap::step()
+{
+}
+
+
+// draw
+void cMap::draw()
+{
+	// draw ground
+	for(int ypos=0; ypos<19; ypos++)
+	{
+		for(int xpos=0; xpos<25; xpos++)
+		{
+			if(!layerGround[xpos][ypos] == 0)
+			{
+
+				int tileNumber = layerGround[xpos][ypos];
+
+				sprGround.setTextureRect(Rectangles[tileNumber]);
+				sprGround.setPosition((float)(xpos*32),(float)(ypos*32));
+				GlobalData->windowMain.draw(sprGround);
+
+			}
+		}
+	}
 }

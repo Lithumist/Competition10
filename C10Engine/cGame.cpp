@@ -32,17 +32,9 @@ bool cGame::startGame()
 	// initialize the player
 	Player.initialize();
 
-	// perform a map test
-	cMap testMap;
-	if(testMap.loadFromFile("resources/maps/test/test1.txt"))
-	{
-		std::cout << "MAP LOADED!\n";
-		std::cout << testMap.mapName << std::endl;
-	}
-	else
-	{
-		std::cout << "MAP FAILED TO LOAD!\n";
-	}
+	// load a test map.. for testing
+	mapCurrent.loadResources(&GlobalData);
+	mapCurrent.loadFromFile("resources/maps/test/test1.txt");
 
 	return true;
 }
@@ -102,6 +94,9 @@ bool cGame::events()
 	// player events
 	Player.events();
 
+	// map events
+	mapCurrent.events();
+
 
 	return true;
 }
@@ -110,8 +105,11 @@ bool cGame::events()
 // step
 void cGame::step()
 {
-	// Player step
+	// player step
 	Player.step();
+
+	// map step
+	mapCurrent.step();
 }
 
 // draw
@@ -119,6 +117,9 @@ void cGame::draw()
 {
 	// clear the window
 	GlobalData.windowMain.clear();
+
+	// draw map
+	mapCurrent.draw();
 
 	// draw player
 	Player.draw();

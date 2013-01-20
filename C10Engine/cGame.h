@@ -21,6 +21,7 @@ public:
 	// main classes
 	cGlobalData GlobalData; // the data for the game
 	cPlayer Player; // the player
+	cMap mapCurrent; // the current map the player is on
 
 
 	// other varibles
