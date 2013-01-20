@@ -47,12 +47,16 @@ public:
 
 	float x, y;
 	float xSpeed, ySpeed;
+	float xMouse, yMouse;
+	float bowAngle;
 
 
 
 	sf::Texture txtSheet;
+	sf::Texture txtBowSheet;
 
 	sf::Sprite sprMain;
+	sf::Sprite sprBow;
 
 
 };

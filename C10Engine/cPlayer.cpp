@@ -26,6 +26,9 @@ bool cPlayer::loadResources(cGlobalData* data)
 	if(!txtSheet.loadFromFile("resources/graphics/player_sheet.png"))
 		return false;
 
+	if(!txtBowSheet.loadFromFile("resources/graphics/bow_sheet.png"))
+		return false;
+
 
 	return true;
 }
@@ -41,6 +44,8 @@ bool cPlayer::loadResources(cGlobalData* data)
 void cPlayer::initialize()
 {
 	sprMain.setTexture(txtSheet);
+	sprBow.setTexture(txtBowSheet);
+	sprBow.setOrigin(16,16);
 }
 
 
@@ -71,6 +76,11 @@ void cPlayer::events()
 		keyD = true;
 	else
 		keyD = false;
+
+
+	// update mouse positions
+	xMouse = (float)sf::Mouse::getPosition(GlobalData->windowMain).x;
+	yMouse = (float)sf::Mouse::getPosition(GlobalData->windowMain).y;
 }
 
 
@@ -137,6 +147,13 @@ void cPlayer::step()
 	// add final speeds on
 	x += xSpeed;
 	y += ySpeed;
+
+
+
+
+
+	// calculate bow angle
+	bowAngle = (atan2(yMouse - y+16, xMouse - x+16) *180 /3.14);
 }
 
 
@@ -146,4 +163,9 @@ void cPlayer::draw()
 	// draw the main sprite
 	sprMain.setPosition(x,y);
 	GlobalData->windowMain.draw(sprMain);
+
+	// draw the rotated bow
+	sprBow.setPosition(x+16,y+16); // set bow to centre of player
+	sprBow.setRotation(bowAngle); // rotate
+	GlobalData->windowMain.draw(sprBow);
 }
