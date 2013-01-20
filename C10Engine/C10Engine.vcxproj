@@ -83,6 +83,7 @@
     <ClCompile Include="cGame.cpp" />
     <ClCompile Include="cGlobalData.cpp" />
     <ClCompile Include="cInventory.cpp" />
+    <ClCompile Include="cMap.cpp" />
     <ClCompile Include="cPlayer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -90,6 +91,7 @@
     <ClInclude Include="cGame.h" />
     <ClInclude Include="cGlobalData.h" />
     <ClInclude Include="cInventory.h" />
+    <ClInclude Include="cMap.h" />
     <ClInclude Include="cPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

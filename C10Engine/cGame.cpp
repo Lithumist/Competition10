@@ -32,6 +32,18 @@ bool cGame::startGame()
 	// initialize the player
 	Player.initialize();
 
+	// perform a map test
+	cMap testMap;
+	if(testMap.loadFromFile("resources/maps/test/test1.txt"))
+	{
+		std::cout << "MAP LOADED!\n";
+		std::cout << testMap.mapName << std::endl;
+	}
+	else
+	{
+		std::cout << "MAP FAILED TO LOAD!\n";
+	}
+
 	return true;
 }
 

@@ -10,6 +10,7 @@
 // include
 #include "cGlobalData.h"
 #include "cPlayer.h"
+#include "cMap.h"
 
 
 
