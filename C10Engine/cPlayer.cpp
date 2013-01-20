@@ -87,6 +87,52 @@ void cPlayer::step()
 	if(keyD)
 		xSpeed += PLAYER_ACCELERATION;
 
+	// cap speed
+	if(xSpeed > PLAYER_MAX_SPEED)
+		xSpeed = PLAYER_MAX_SPEED;
+	else if(xSpeed < -PLAYER_MAX_SPEED)
+		xSpeed = -PLAYER_MAX_SPEED;
+
+	if(ySpeed > PLAYER_MAX_SPEED)
+		ySpeed = PLAYER_MAX_SPEED;
+	else if(ySpeed < -PLAYER_MAX_SPEED)
+		ySpeed = -PLAYER_MAX_SPEED;
+
+	// calculate friction
+	// x
+	if(!keyA && !keyD)
+	{
+		if(xSpeed > 0)
+		{
+			xSpeed -= PLAYER_FRICTION;
+			if(xSpeed < 0)
+				xSpeed = 0;
+		}
+		else if(xSpeed < 0)
+		{
+			xSpeed += PLAYER_FRICTION;
+			if(xSpeed > 0)
+				xSpeed = 0;
+		}
+	}
+
+	// y
+	if(!keyW && !keyS)
+	{
+		if(ySpeed > 0)
+		{
+			ySpeed -= PLAYER_FRICTION;
+			if(ySpeed < 0)
+				ySpeed = 0;
+		}
+		else if(ySpeed < 0)
+		{
+			ySpeed += PLAYER_FRICTION;
+			if(ySpeed > 0)
+				ySpeed = 0;
+		}
+	}
+
 
 	// add final speeds on
 	x += xSpeed;

@@ -15,7 +15,9 @@
 
 
 // Player physics constants
-const float PLAYER_ACCELERATION = 0.2;
+const float PLAYER_ACCELERATION = 0.6;
+const float PLAYER_MAX_SPEED = 4;
+const float PLAYER_FRICTION = 0.4;
 
 
 
