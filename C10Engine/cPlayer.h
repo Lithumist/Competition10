@@ -12,6 +12,8 @@
 #include "cGlobalData.h"
 #include <SFML/Graphics.hpp>
 
+#include "cInventory.h"
+
 
 
 // Player physics constants

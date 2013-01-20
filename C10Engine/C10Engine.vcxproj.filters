@@ -31,6 +31,12 @@
     <Filter Include="Source Files\cPlayer">
       <UniqueIdentifier>{8a2d2e26-b9c4-4e68-b454-84288a8bcfc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\cPlayer\sub">
+      <UniqueIdentifier>{2f73bcc5-6e7a-4f95-81eb-cd5e961208e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cPlayer\sub">
+      <UniqueIdentifier>{8ae28944-be19-4ae4-a3fa-971b7ddabea9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +51,9 @@
     <ClCompile Include="cPlayer.cpp">
       <Filter>Source Files\cPlayer</Filter>
     </ClCompile>
+    <ClCompile Include="cInventory.cpp">
+      <Filter>Source Files\cPlayer\sub</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cGame.h">
@@ -55,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="cPlayer.h">
       <Filter>Header Files\cPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="cInventory.h">
+      <Filter>Header Files\cPlayer\sub</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
