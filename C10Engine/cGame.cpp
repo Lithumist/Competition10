@@ -88,6 +88,32 @@ bool cGame::events()
 		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Escape)
 			paused = !paused;
 
+		// F4 key pressed - take a screenshot and save it
+		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::F4)
+		{
+
+			// capture screen
+			screenshot = GlobalData.windowMain.capture();
+
+			// get time
+			time_t t = time(0);
+			tm * now = localtime(&t);
+
+			// format time
+			std::string filenm = asctime(now);
+			filenm = filenm.substr(0, filenm.size()-1);
+			for(std::string::size_type i = 0; (i = filenm.find(":", i)) != std::string::npos;)
+			{
+				filenm.replace(i, 1, "-");
+				i += 1;
+			}
+			filenm += ".png";
+			if(screenshot.saveToFile("screenshots/" + filenm))
+				std::cout << "Screenshot saved to " + filenm + "\n";
+
+		}
+
+
 
 
 

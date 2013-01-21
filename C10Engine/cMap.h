@@ -60,13 +60,16 @@ public:
 
 	sf::IntRect Rectangles[220];
 	int layerGround[25][19];
+	int layerMask[25][19];
 
 
 
 	sf::Texture txtGroundSheet;
+	sf::Texture txtMaskSheet;
 	sf::Texture txtDefaultProjectile;
 
 	sf::Sprite sprGround;
+	sf::Sprite sprMask;
 	sf::Sprite sprDefaultProjectile;
 
 

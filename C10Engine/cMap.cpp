@@ -33,10 +33,14 @@ bool cMap::loadResources(cGlobalData* data)
 	if(!txtGroundSheet.loadFromFile("resources/graphics/ground_sheet.png"))
 		return false;
 
+	if(!txtMaskSheet.loadFromFile("resources/graphics/mask_sheet.png"))
+		return false;
+
 	if(!txtDefaultProjectile.loadFromFile("resources/graphics/default_projectile.png"))
 		return false;
 
 	sprGround.setTexture(txtGroundSheet);
+	sprMask.setTexture(txtMaskSheet);
 	sprDefaultProjectile.setTexture(txtDefaultProjectile);
 	return true;
 }
@@ -63,8 +67,11 @@ bool cMap::loadFromFile(std::string filename)
 	std::getline(file,fileMapName);
 	mapName = fileMapName;
 
-	// read ground layer
+	// prepare for tile reading
 	int tile, xpos, ypos;
+
+	// read ground layer
+	tile = 0;
 	xpos = 0;
 	ypos = 0;
 	for(int t=0; t<475; t++)  // 25*19 = 475
@@ -75,6 +82,27 @@ bool cMap::loadFromFile(std::string filename)
 			goto load_fail;
 		else
 			layerGround[xpos][ypos] = tile;
+
+		xpos ++;
+		if(xpos >= 25)
+		{
+			xpos = 0;
+			ypos ++;
+		}
+	}
+
+	// read mask layer
+	tile = 0;
+	xpos = 0;
+	ypos = 0;
+	for(int t=0; t<475; t++)
+	{
+		file >> tile;
+
+		if(tile<0 || tile > 999)
+			goto load_fail;
+		else
+			layerMask[xpos][ypos] = tile;
 
 		xpos ++;
 		if(xpos >= 25)
@@ -151,6 +179,24 @@ void cMap::draw()
 				sprGround.setTextureRect(Rectangles[tileNumber]);
 				sprGround.setPosition((float)(xpos*32),(float)(ypos*32));
 				GlobalData->windowMain.draw(sprGround);
+
+			}
+		}
+	}
+
+	// draw mask
+	for(int ypos=0; ypos<19; ypos++)
+	{
+		for(int xpos=0; xpos<25; xpos++)
+		{
+			if(!layerMask[xpos][ypos] == 0)
+			{
+
+				int tileNumber = layerMask[xpos][ypos];
+
+				sprMask.setTextureRect(Rectangles[tileNumber]);
+				sprMask.setPosition((float)(xpos*32),(float)(ypos*32));
+				GlobalData->windowMain.draw(sprMask);
 
 			}
 		}

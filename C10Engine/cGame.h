@@ -8,6 +8,7 @@
 
 
 // include
+#include <ctime>
 #include "cGlobalData.h"
 #include "cPlayer.h"
 #include "cMap.h"
@@ -36,6 +37,7 @@ public:
 	*/
 
 	bool paused;
+	sf::Image screenshot;
 
 
 
