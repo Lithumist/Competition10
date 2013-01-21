@@ -28,11 +28,16 @@ cMap::cMap()
 bool cMap::loadResources(cGlobalData* data)
 {
 	GlobalData = data;
+	cProjectile::GlobalData = data;
 
 	if(!txtGroundSheet.loadFromFile("resources/graphics/ground_sheet.png"))
 		return false;
 
+	if(!txtDefaultProjectile.loadFromFile("resources/graphics/default_projectile.png"))
+		return false;
+
 	sprGround.setTexture(txtGroundSheet);
+	sprDefaultProjectile.setTexture(txtDefaultProjectile);
 	return true;
 }
 
@@ -110,12 +115,34 @@ bool cMap::saveToFile(std::string filename)
 // events
 void cMap::events()
 {
+	sf::Event ev;
+	while(GlobalData->windowMain.pollEvent(ev))
+	{
+
+
+		// k key pressed - destroy all projectiles                                     aka, projectile panic key :p
+		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::K)
+			projectiles.clear();
+
+
+		// any mouse button pressed - create a projectile at cursor
+		if(ev.type == sf::Event::MouseButtonPressed){
+			projectiles.push_back(cProjectile(sf::Mouse::getPosition().x,sf::Mouse::getPosition().y,1,1,16,16,0,0,1,sprDefaultProjectile));
+		}
+
+
+	}
 }
 
 
 // step
 void cMap::step()
 {
+	// step projectiles
+	for(int p=0; p<projectiles.size(); p++)
+	{
+		projectiles[p].step();
+	}
 }
 
 
@@ -139,4 +166,26 @@ void cMap::draw()
 			}
 		}
 	}
+
+
+
+	// draw projectiles
+	for(int p=0; p<projectiles.size(); p++)
+	{
+		projectiles[p].draw();
+	}
+
+}
+
+
+
+
+
+
+
+
+// makeProjectile
+void cMap::makeProjectile(cProjectile proj)
+{
+	projectiles.push_back(proj);
 }

@@ -85,6 +85,7 @@
     <ClCompile Include="cInventory.cpp" />
     <ClCompile Include="cMap.cpp" />
     <ClCompile Include="cPlayer.cpp" />
+    <ClCompile Include="cProjectile.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +94,7 @@
     <ClInclude Include="cInventory.h" />
     <ClInclude Include="cMap.h" />
     <ClInclude Include="cPlayer.h" />
+    <ClInclude Include="cProjectile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

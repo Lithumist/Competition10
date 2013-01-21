@@ -10,8 +10,10 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include "cGlobalData.h"
+#include "cProjectile.h"
 
 
 
@@ -35,7 +37,7 @@ public:
 
 	cMap();
 
-	bool loadResources(cGlobalData* data);
+	bool loadResources(cGlobalData* data); // also set's cProjectile's GlobalData pointer
 
 
 	bool loadFromFile(std::string filename);
@@ -46,8 +48,12 @@ public:
 	void draw();
 
 
+	void makeProjectile(cProjectile proj);
 
 
+
+
+	std::vector<cProjectile> projectiles;
 
 	std::string warpNorth, warpEast, warpSouth, warpWest;
 	std::string mapName;
@@ -58,8 +64,10 @@ public:
 
 
 	sf::Texture txtGroundSheet;
+	sf::Texture txtDefaultProjectile;
 
 	sf::Sprite sprGround;
+	sf::Sprite sprDefaultProjectile;
 
 
 };

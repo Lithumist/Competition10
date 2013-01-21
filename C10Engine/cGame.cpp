@@ -88,14 +88,18 @@ bool cGame::events()
 		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Escape)
 			paused = !paused;
 
+
+
+
+
 	}
 
 
-	// player events
-	Player.events();
+		// player events
+		Player.events();
 
-	// map events
-	mapCurrent.events();
+		// map events
+		mapCurrent.events();
 
 
 	return true;

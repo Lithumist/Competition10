@@ -63,6 +63,9 @@
     <ClCompile Include="cMap.cpp">
       <Filter>Source Files\cMap</Filter>
     </ClCompile>
+    <ClCompile Include="cProjectile.cpp">
+      <Filter>Source Files\cMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cGame.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files\cPlayer\sub</Filter>
     </ClInclude>
     <ClInclude Include="cMap.h">
+      <Filter>Header Files\cMap</Filter>
+    </ClInclude>
+    <ClInclude Include="cProjectile.h">
       <Filter>Header Files\cMap</Filter>
     </ClInclude>
   </ItemGroup>
