@@ -108,6 +108,8 @@ bool cGame::events()
 				i += 1;
 			}
 			filenm += ".png";
+
+			// save
 			if(screenshot.saveToFile("screenshots/" + filenm))
 				std::cout << "Screenshot saved to " + filenm + "\n";
 
