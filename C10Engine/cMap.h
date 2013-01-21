@@ -43,7 +43,7 @@ public:
 	bool loadFromFile(std::string filename);
 	bool saveToFile(std::string filename);
 
-	void events();
+	void events(sf::Event& ev);
 	void step();
 	void draw();
 

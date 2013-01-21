@@ -92,14 +92,16 @@ bool cGame::events()
 
 
 
-	}
 
 
 		// player events
-		Player.events();
+		Player.events(ev);
 
 		// map events
-		mapCurrent.events();
+		mapCurrent.events(ev);
+
+
+	}
 
 
 	return true;

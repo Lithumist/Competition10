@@ -113,25 +113,20 @@ bool cMap::saveToFile(std::string filename)
 
 
 // events
-void cMap::events()
+void cMap::events(sf::Event& ev)
 {
-	sf::Event ev;
-	while(GlobalData->windowMain.pollEvent(ev))
-	{
+
+	// k key pressed - destroy all projectiles                                  aka, projectile panic key :p
+	if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::K)
+		projectiles.clear();
 
 
-		// k key pressed - destroy all projectiles                                     aka, projectile panic key :p
-		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::K)
-			projectiles.clear();
-
-
-		// any mouse button pressed - create a projectile at cursor
-		if(ev.type == sf::Event::MouseButtonPressed){
-			projectiles.push_back(cProjectile(sf::Mouse::getPosition().x,sf::Mouse::getPosition().y,1,1,16,16,0,0,1,sprDefaultProjectile));
-		}
-
-
+	// any mouse button pressed - create a projectile at cursor
+	if(ev.type == sf::Event::MouseButtonPressed){
+		projectiles.push_back(cProjectile(sf::Mouse::getPosition().x,sf::Mouse::getPosition().y,1,1,16,16,0,0,4,sprDefaultProjectile));
 	}
+
+
 }
 
 

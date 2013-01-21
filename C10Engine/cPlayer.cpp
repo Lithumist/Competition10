@@ -54,7 +54,7 @@ void cPlayer::initialize()
 
 
 // events
-void cPlayer::events()
+void cPlayer::events(sf::Event& ev)
 {
 	// update key states
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))

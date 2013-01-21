@@ -41,7 +41,7 @@ public:
 
 	void initialize();
 
-	void events();
+	void events(sf::Event& ev);
 	void step();
 	void draw();
 
