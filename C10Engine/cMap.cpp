@@ -121,12 +121,6 @@ void cMap::events(sf::Event& ev)
 		projectiles.clear();
 
 
-	// any mouse button pressed - create a projectile at cursor
-	if(ev.type == sf::Event::MouseButtonPressed){
-		projectiles.push_back(cProjectile(sf::Mouse::getPosition().x,sf::Mouse::getPosition().y,1,1,16,16,0,0,4,sprDefaultProjectile));
-	}
-
-
 }
 
 
