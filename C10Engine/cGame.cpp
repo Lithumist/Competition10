@@ -158,6 +158,9 @@ void cGame::draw()
 	// draw player
 	Player.draw();
 
+	// draw frindge layer
+	mapCurrent.drawFrindge();
+
 	// display the painted window
 	GlobalData.windowMain.display();
 }

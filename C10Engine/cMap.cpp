@@ -36,11 +36,15 @@ bool cMap::loadResources(cGlobalData* data)
 	if(!txtMaskSheet.loadFromFile("resources/graphics/mask_sheet.png"))
 		return false;
 
+	if(!txtFrindgeSheet.loadFromFile("resources/graphics/frindge_sheet.png"))
+		return false;
+
 	if(!txtDefaultProjectile.loadFromFile("resources/graphics/default_projectile.png"))
 		return false;
 
 	sprGround.setTexture(txtGroundSheet);
 	sprMask.setTexture(txtMaskSheet);
+	sprFrindge.setTexture(txtFrindgeSheet);
 	sprDefaultProjectile.setTexture(txtDefaultProjectile);
 	return true;
 }
@@ -103,6 +107,27 @@ bool cMap::loadFromFile(std::string filename)
 			goto load_fail;
 		else
 			layerMask[xpos][ypos] = tile;
+
+		xpos ++;
+		if(xpos >= 25)
+		{
+			xpos = 0;
+			ypos ++;
+		}
+	}
+
+	// read frindge layer
+	tile = 0;
+	xpos = 0;
+	ypos = 0;
+	for(int t=0; t<475; t++)
+	{
+		file >> tile;
+
+		if(tile<0 || tile > 999)
+			goto load_fail;
+		else
+			layerFrindge[xpos][ypos] = tile;
 
 		xpos ++;
 		if(xpos >= 25)
@@ -210,6 +235,29 @@ void cMap::draw()
 		projectiles[p].draw();
 	}
 
+}
+
+
+// drawFrindge
+void cMap::drawFrindge()
+{
+	// draw frindge
+	for(int ypos=0; ypos<19; ypos++)
+	{
+		for(int xpos=0; xpos<25; xpos++)
+		{
+			if(!layerFrindge[xpos][ypos] == 0)
+			{
+
+				int tileNumber = layerFrindge[xpos][ypos];
+
+				sprFrindge.setTextureRect(Rectangles[tileNumber]);
+				sprFrindge.setPosition((float)(xpos*32),(float)(ypos*32));
+				GlobalData->windowMain.draw(sprFrindge);
+
+			}
+		}
+	}
 }
 
 
