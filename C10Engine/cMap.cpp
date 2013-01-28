@@ -137,6 +137,27 @@ bool cMap::loadFromFile(std::string filename)
 		}
 	}
 
+	// read control layer
+	tile = 0;
+	xpos = 0;
+	ypos = 0;
+	for(int t=0; t<475; t++)
+	{
+		file >> tile;
+
+		if(tile<0 || tile > 999)
+			goto load_fail;
+		else
+			layerControl[xpos][ypos] = tile;
+
+		xpos ++;
+		if(xpos >= 25)
+		{
+			xpos = 0;
+			ypos ++;
+		}
+	}
+
 
 	// success
 	goto load_pass;

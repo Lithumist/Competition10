@@ -22,6 +22,10 @@ public:
 
 	// Window
 	sf::RenderWindow windowMain;
+
+
+	// Player coordinates
+	float playerX, playerY;
 };
 
 

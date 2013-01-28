@@ -66,7 +66,7 @@ public:
 	int layerMask[25][19];
 	int layerFrindge[25][19];
 
-	//int layerControl[25][19];
+	int layerControl[25][19];
 
 
 

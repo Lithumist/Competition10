@@ -150,6 +150,12 @@ void cPlayer::step()
 
 
 
+	// update player coordinates in cGlobalData
+	GlobalData->playerX = x;
+	GlobalData->playerY = y;
+
+
+
 
 
 	// calculate bow angle
