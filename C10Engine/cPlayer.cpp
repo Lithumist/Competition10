@@ -153,7 +153,7 @@ void cPlayer::step()
 
 
 	// calculate bow angle
-	bowAngle = (atan2(yMouse - y+16, xMouse - x+16) *180 /3.14);
+	bowAngle = (atan2(yMouse - (y+16), xMouse - (x+16)) *180 /3.14159);
 }
 
 

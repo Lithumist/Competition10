@@ -61,9 +61,12 @@ public:
 	std::string mapName;
 
 	sf::IntRect Rectangles[220];
+
 	int layerGround[25][19];
 	int layerMask[25][19];
 	int layerFrindge[25][19];
+
+	//int layerControl[25][19];
 
 
 
