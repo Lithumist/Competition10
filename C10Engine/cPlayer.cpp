@@ -161,10 +161,6 @@ void cPlayer::step()
 	// add final speeds on
 	x += xSpeed;
 	y += ySpeed;
-
-	// update player coordinates in cGlobalData
-	GlobalData->playerX = x;
-	GlobalData->playerY = y;
 	
 	// calculate player tile coordinates
 	xTile = (int)((x+16)/32);
@@ -178,22 +174,107 @@ void cPlayer::step()
 
 
 
+	vtr result;
 
 	// do broad collision check
-	if(
-		currentMap->layerControl[(int)xTile][(int)yTile] == CONTROL_IMPASSABLE ||
-		currentMap->layerControl[(int)xTile+1][(int)yTile] == CONTROL_IMPASSABLE ||
-		currentMap->layerControl[(int)xTile-1][(int)yTile] == CONTROL_IMPASSABLE ||
-		currentMap->layerControl[(int)xTile][(int)yTile+1] == CONTROL_IMPASSABLE ||
-		currentMap->layerControl[(int)xTile][(int)yTile-1] == CONTROL_IMPASSABLE ||
-		currentMap->layerControl[(int)xTile+1][(int)yTile+1] == CONTROL_IMPASSABLE ||
-		currentMap->layerControl[(int)xTile-1][(int)yTile-1] == CONTROL_IMPASSABLE ||
-		currentMap->layerControl[(int)xTile+1][(int)yTile-1] == CONTROL_IMPASSABLE ||
-		currentMap->layerControl[(int)xTile-1][(int)yTile+1] == CONTROL_IMPASSABLE
-	)
-	{
-		std::cout << "WALL NEAR! ";
-	}
+	//if(currentMap->layerControl[(int)xTile+1][(int)yTile] == CONTROL_IMPASSABLE)
+	//{
+		result = handleCollision(1,0);
+		if(result.collision)
+		{
+			x += result.x;
+			y += result.y;
+			xTile = (int)((x+16)/32);
+			yTile = (int)((y+16)/32);
+		}
+	//}
+	//if(currentMap->layerControl[(int)xTile-1][(int)yTile] == CONTROL_IMPASSABLE)
+	//{
+		result = handleCollision(-1,0);
+		if(result.collision)
+		{
+			x += result.x;
+			y += result.y;
+			xTile = (int)((x+16)/32);
+			yTile = (int)((y+16)/32);
+		}
+	//}
+	//if(currentMap->layerControl[(int)xTile][(int)yTile+1] == CONTROL_IMPASSABLE)
+	//{
+		result = handleCollision(0,1);
+		if(result.collision)
+		{
+			x += result.x;
+			y += result.y;
+			xTile = (int)((x+16)/32);
+			yTile = (int)((y+16)/32);
+		}
+	//}
+	//if(currentMap->layerControl[(int)xTile][(int)yTile-1] == CONTROL_IMPASSABLE)
+	//{
+		result = handleCollision(0,-1);
+		if(result.collision)
+		{
+			x += result.x;
+			y += result.y;
+			xTile = (int)((x+16)/32);
+			yTile = (int)((y+16)/32);
+		}
+	//}
+	//if(currentMap->layerControl[(int)xTile+1][(int)yTile+1] == CONTROL_IMPASSABLE)
+	//{
+		result = handleCollision(1,1);
+		if(result.collision)
+		{
+			x += result.x;
+			y += result.y;
+			xTile = (int)((x+16)/32);
+			yTile = (int)((y+16)/32);
+		}
+	//}
+	//if(currentMap->layerControl[(int)xTile-1][(int)yTile-1] == CONTROL_IMPASSABLE)
+	//{
+		result = handleCollision(-1,-1);
+		if(result.collision)
+		{
+			x += result.x;
+			y += result.y;
+			xTile = (int)((x+16)/32);
+			yTile = (int)((y+16)/32);
+		}
+	//}
+	//if(currentMap->layerControl[(int)xTile+1][(int)yTile-1] == CONTROL_IMPASSABLE)
+	//{
+		result = handleCollision(1,-1);
+		if(result.collision)
+		{
+			x += result.x;
+			y += result.y;
+			xTile = (int)((x+16)/32);
+			yTile = (int)((y+16)/32);
+		}
+	//}
+	//if(currentMap->layerControl[(int)xTile-1][(int)yTile+1] == CONTROL_IMPASSABLE)
+	//{
+		result = handleCollision(-1,+1);
+		if(result.collision)
+		{
+			x += result.x;
+			y += result.y;
+			xTile = (int)((x+16)/32);
+			yTile = (int)((y+16)/32);
+		}
+	//}
+
+
+
+
+
+
+
+	// update player coordinates in cGlobalData
+	GlobalData->playerX = x;
+	GlobalData->playerY = y;
 
 
 }
@@ -210,4 +291,65 @@ void cPlayer::draw()
 	sprBow.setPosition(x+16,y+16); // set bow to centre of player
 	sprBow.setRotation(bowAngle); // rotate
 	GlobalData->windowMain.draw(sprBow);
+}
+
+
+
+
+
+
+
+// handleCollision
+vtr cPlayer::handleCollision(int xMod, int yMod)
+{
+	// check for obvious fail
+	if(currentMap->layerControl[(int)(xTile+xMod)][(int)(yTile+yMod)] != CONTROL_IMPASSABLE)
+	{
+		vtr rtn_obv;
+		rtn_obv.collision = false;
+		rtn_obv.x = 0;
+		rtn_obv.y = 0;
+		return rtn_obv;
+	}
+
+	// create rectangles
+	sf::FloatRect wall;
+	sf::FloatRect player;
+
+	wall.left = (xTile+xMod) * 32;
+	wall.top = (yTile+yMod) * 32;
+	wall.width = 32;
+	wall.height = 32;
+
+	player.left = x;
+	player.top = y;
+	player.width = 32;
+	player.height = 32;
+
+	// test for precise collision
+	vtr rtn;
+	rtn.x = 0;
+	rtn.y = 0;
+
+	if(player.intersects(wall))
+	{
+		rtn.collision = true;
+		
+
+		// determine if the collision was vertical or horizontal
+		if(xMod != 0)
+		{
+			rtn.x = -xSpeed;
+		}
+		else if(yMod != 0)
+		{
+			rtn.y = -ySpeed;
+		}
+	}
+	else
+	{
+		rtn.collision = false;
+	}
+
+	return rtn;
 }

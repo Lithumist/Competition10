@@ -22,6 +22,8 @@ const float PLAYER_MAX_SPEED = (float)4;
 const float PLAYER_FRICTION = (float)0.4;
 
 
+struct vtr { float x; float y; bool collision; };
+
 
 // class
 class cPlayer
@@ -47,6 +49,8 @@ public:
 	void events(sf::Event& ev);
 	void step();
 	void draw();
+
+	vtr handleCollision(int xMod, int yMod);
 
 
 

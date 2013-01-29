@@ -38,7 +38,7 @@ public:
 const unsigned int WINDOW_WIDTH = 800;
 const unsigned int WINDOW_HEIGHT = 608;
 const std::string WINDOW_CAPTION = "C10Engine";
-const unsigned int GAME_FPS = 30;
+const unsigned int GAME_FPS = 60;
 
 
 
