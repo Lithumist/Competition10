@@ -36,6 +36,8 @@ bool cGame::startGame()
 	mapCurrent.loadResources(&GlobalData);
 	mapCurrent.loadFromFile("resources/maps/test/test1.txt");
 
+	Player.switchMap(&mapCurrent);
+
 	return true;
 }
 

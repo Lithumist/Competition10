@@ -53,6 +53,20 @@ void cPlayer::initialize()
 
 
 
+// switchMap
+void cPlayer::switchMap(cMap* newMap)
+{
+	if(newMap == NULL)
+		std::cout << "cPlayer::switchMap being passed a NULL pointer.\n";
+
+	currentMap = newMap;
+}
+
+
+
+
+
+
 // events
 void cPlayer::events(sf::Event& ev)
 {
@@ -148,18 +162,40 @@ void cPlayer::step()
 	x += xSpeed;
 	y += ySpeed;
 
-
-
 	// update player coordinates in cGlobalData
 	GlobalData->playerX = x;
 	GlobalData->playerY = y;
-
+	
+	// calculate player tile coordinates
+	xTile = (int)((x+16)/32);
+	yTile = (int)((y+16)/32);
 
 
 
 
 	// calculate bow angle
 	bowAngle = (atan2(yMouse - (y+16), xMouse - (x+16)) *180 /3.14159);
+
+
+
+
+	// do broad collision check
+	if(
+		currentMap->layerControl[(int)xTile][(int)yTile] == CONTROL_IMPASSABLE ||
+		currentMap->layerControl[(int)xTile+1][(int)yTile] == CONTROL_IMPASSABLE ||
+		currentMap->layerControl[(int)xTile-1][(int)yTile] == CONTROL_IMPASSABLE ||
+		currentMap->layerControl[(int)xTile][(int)yTile+1] == CONTROL_IMPASSABLE ||
+		currentMap->layerControl[(int)xTile][(int)yTile-1] == CONTROL_IMPASSABLE ||
+		currentMap->layerControl[(int)xTile+1][(int)yTile+1] == CONTROL_IMPASSABLE ||
+		currentMap->layerControl[(int)xTile-1][(int)yTile-1] == CONTROL_IMPASSABLE ||
+		currentMap->layerControl[(int)xTile+1][(int)yTile-1] == CONTROL_IMPASSABLE ||
+		currentMap->layerControl[(int)xTile-1][(int)yTile+1] == CONTROL_IMPASSABLE
+	)
+	{
+		std::cout << "WALL NEAR! ";
+	}
+
+
 }
 
 

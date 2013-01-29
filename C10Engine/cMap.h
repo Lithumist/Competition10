@@ -18,7 +18,6 @@
 
 
 
-
 // constants
 const std::string MAP_HEADER = "C10_MAP";
 
@@ -79,6 +78,7 @@ public:
 	sf::Sprite sprMask;
 	sf::Sprite sprFrindge;
 	sf::Sprite sprDefaultProjectile;
+
 
 
 };

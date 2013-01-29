@@ -11,7 +11,7 @@
 // include
 #include "cGlobalData.h"
 #include <SFML/Graphics.hpp>
-
+#include "cMap.h"
 #include "cInventory.h"
 
 
@@ -29,6 +29,7 @@ class cPlayer
 private:
 
 	cGlobalData* GlobalData;
+	cMap* currentMap;
 	bool keyW, keyA, keyS, keyD;
 
 
@@ -41,13 +42,15 @@ public:
 
 	void initialize();
 
+	void switchMap(cMap* newMap);
+
 	void events(sf::Event& ev);
 	void step();
 	void draw();
 
 
 
-	float x, y;
+	float x, y, xTile, yTile;
 	float xSpeed, ySpeed;
 	float xMouse, yMouse;
 	float bowAngle;
