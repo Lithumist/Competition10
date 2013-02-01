@@ -52,6 +52,8 @@ public:
 
 	vtr handleCollision(int xMod, int yMod);
 
+	void move(float newX, float newY);
+
 
 
 

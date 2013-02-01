@@ -365,3 +365,19 @@ vtr cPlayer::handleCollision(int xMod, int yMod)
 
 	return rtn;
 }
+
+
+
+
+
+
+
+
+
+
+// move
+void cPlayer::move(float newX, float newY)
+{
+	x = newX;
+	y = newY;
+}
