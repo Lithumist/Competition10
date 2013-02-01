@@ -54,6 +54,10 @@ public:
 
 
 
+
+	cInventory Inventory;
+
+
 	float x, y, xTile, yTile;
 	float xSpeed, ySpeed;
 	float xMouse, yMouse;

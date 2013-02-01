@@ -46,6 +46,8 @@ void cPlayer::initialize()
 	sprMain.setTexture(txtSheet);
 	sprBow.setTexture(txtBowSheet);
 	sprBow.setOrigin(16,16);
+
+	Inventory.initialize(GlobalData);
 }
 
 
@@ -95,6 +97,7 @@ void cPlayer::events(sf::Event& ev)
 	// update mouse positions
 	xMouse = (float)sf::Mouse::getPosition(GlobalData->windowMain).x;
 	yMouse = (float)sf::Mouse::getPosition(GlobalData->windowMain).y;
+
 }
 
 
@@ -275,6 +278,15 @@ void cPlayer::step()
 	// update player coordinates in cGlobalData
 	GlobalData->playerX = x;
 	GlobalData->playerY = y;
+
+
+
+
+
+
+
+
+
 
 
 }

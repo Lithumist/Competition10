@@ -8,6 +8,7 @@ cGame::cGame()
 	cGlobalData GlobalData;
 	currentState = 0;
 	paused = false;
+	invPaused = false;
 }
 
 
@@ -66,8 +67,12 @@ bool cGame::loop()
 		if(!events())
 			break;
 		
-		if(!paused)
+		if(!paused && !invPaused)
 			step();
+		else if(invPaused && !paused)
+			Player.Inventory.step();
+		else if(invPaused && paused)
+			1+1;
 
 		draw();
 	}
@@ -91,6 +96,17 @@ bool cGame::events()
 		// escape key pressed - toggle pause
 		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Escape)
 			paused = !paused;
+
+		// toggle inventory
+		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::I)
+		{
+			if(!paused)
+			{
+				Player.Inventory.showing = !Player.Inventory.showing;
+				invPaused = Player.Inventory.showing;
+		
+			}
+		}
 
 		// F4 key pressed - take a screenshot and save it
 		if(ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::F4)
@@ -128,6 +144,7 @@ bool cGame::events()
 
 		// player events
 		Player.events(ev);
+		Player.Inventory.events(ev);
 
 		// map events
 		mapCurrent.events(ev);
@@ -164,6 +181,10 @@ void cGame::draw()
 
 	// draw frindge layer
 	mapCurrent.drawFrindge();
+
+	// draw inventory
+	if(!paused)
+		Player.Inventory.draw();
 
 	// display the painted window
 	GlobalData.windowMain.display();

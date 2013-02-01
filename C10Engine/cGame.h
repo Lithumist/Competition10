@@ -37,6 +37,7 @@ public:
 	*/
 
 	bool paused;
+	bool invPaused;
 	sf::Image screenshot;
 
 
