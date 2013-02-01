@@ -10,6 +10,7 @@
 // include
 #include <vector>
 #include <string>
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "cGlobalData.h"
 
@@ -60,6 +61,10 @@ public:
 	bool showing;
 
 	sInventorySlot invData[INVENTORY_SLOTS];
+
+	sf::Font fnt;
+	sf::Font fntMain;
+	sf::Text templateText;
 
 
 

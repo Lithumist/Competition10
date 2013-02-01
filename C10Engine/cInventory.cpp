@@ -15,6 +15,11 @@ cInventory::cInventory()
 void cInventory::initialize(cGlobalData* data)
 {
 	GlobalData = data;
+
+	fnt.loadFromFile("resources/fonts/8-BIT WONDER.TTF");
+	fntMain.loadFromFile("resources/fonts/ponde___.ttf");
+
+	templateText.setFont(fnt);
 }
 
 
@@ -38,10 +43,32 @@ void cInventory::draw()
 		return;
 
 	sf::RectangleShape rct;
-	rct.setPosition(200,200);
-	rct.setSize(sf::Vector2f(400,200));
+	rct.setPosition(200,152);
+	rct.setSize(sf::Vector2f(400,304));
 	rct.setFillColor(sf::Color(80,80,80));
 	GlobalData->windowMain.draw(rct);
+
+	sf::Text header = templateText;
+	header.setColor(sf::Color(150,150,150));
+	header.setCharacterSize(30);
+	header.setString("Inventory");
+	header.setPosition(280,160);
+	GlobalData->windowMain.draw(header);
+
+	sf::Text itemList;
+	itemList.setFont(fntMain);
+	itemList.setCharacterSize(15);
+	itemList.setPosition(210,240);
+	itemList.setString("  Eye of lal\n  Wutsword\n> 6 Feathers\n  empty\n  empty\n  empty\n  empty\n  empty\n  empty\n  empty");
+	GlobalData->windowMain.draw(itemList);
+
+	sf::Text help = templateText;
+	help.setColor(sf::Color(130,130,130));
+	help.setCharacterSize(12);
+	help.setString("Press enter to select");
+	help.setPosition(295,430);
+	GlobalData->windowMain.draw(help);
+
 }
 
 
