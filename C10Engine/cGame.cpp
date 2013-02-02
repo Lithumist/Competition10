@@ -104,6 +104,7 @@ bool cGame::events()
 			{
 				Player.Inventory.showing = !Player.Inventory.showing;
 				invPaused = Player.Inventory.showing;
+				Player.Inventory.slotSelected = 0;
 		
 			}
 		}

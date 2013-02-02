@@ -48,6 +48,8 @@ void cPlayer::initialize()
 	sprBow.setOrigin(16,16);
 
 	Inventory.initialize(GlobalData);
+
+	Inventory.giveItem(0,100);
 }
 
 

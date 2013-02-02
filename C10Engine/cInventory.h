@@ -28,6 +28,7 @@ const unsigned int INVENTORY_SLOTS = 8;
 struct sInventorySlot
 {
 	int itemIndex;
+	int ammount;
 };
 
 
@@ -54,12 +55,15 @@ public:
 	void clear();
 	int itemCount(int index);
 	bool hasItem(int index);
-
+	int freeSlots(); // returns number of free slots
+	int getFirstFreeSlot(); // returns -1 when no free slot
+	bool giveItem(int index, int number);
+	bool takeItem(int index, int number);
 
 
 
 	bool showing;
-
+	int slotSelected;
 	sInventorySlot invData[INVENTORY_SLOTS];
 
 	sf::Font fnt;
