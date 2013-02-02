@@ -78,13 +78,17 @@ void cInventory::draw()
 			if(invData[t].ammount > 1)
 			{
 				// plural
-				addString += invData[t].ammount;
+				std::stringstream am;
+				am << invData[t].ammount;
+
+				addString += am.str();
 				addString += " ";
-				addString += GlobalData->ITEM_DB[invData[t].itemIndex].name_plural;
+				addString += GlobalData->getItem(invData[t].itemIndex).name_plural;
 			}
+			else
 			{
 				// singular
-				addString += GlobalData->ITEM_DB[invData[t].itemIndex].name;
+				addString += GlobalData->getItem(invData[t].itemIndex).name;
 			}
 		}
 		else
@@ -183,6 +187,8 @@ int cInventory::getFirstFreeSlot()
 		if(invData[t].itemIndex < 0)
 			return t;
 	}
+
+	return 999; // impossible to reach here
 }
 
 // hasItem
@@ -201,13 +207,20 @@ bool cInventory::hasItem(int index)
 // give item
 bool cInventory::giveItem(int index, int number)
 {
+	int needToAdd;
 	if(hasItem(index))
 	{
+
+
+		
+
+
 	}
 	else
 	{
-		invData[getFirstFreeSlot()].itemIndex = index;
-		invData[getFirstFreeSlot()].ammount = number;
+		unsigned int slot = getFirstFreeSlot();
+		invData[slot].itemIndex = index;
+		invData[slot].ammount = number;
 	}
 	return false;
 }
@@ -215,5 +228,44 @@ bool cInventory::giveItem(int index, int number)
 // takeItem
 bool cInventory::takeItem(int index, int number)
 {
+	if(!hasItem(index))
+		return false;
+
+	int leftToTake = number;
+	int max_stack = GlobalData->getItem(index).max_stack;
+
+	for(int t=INVENTORY_SLOTS-1; t>=0; t--) // loop backwards
+	{
+		if(invData[t].itemIndex == index)
+		{
+			if(leftToTake == invData[t].ammount)
+			{
+				invData[t].itemIndex = -1;
+				invData[t].ammount = 0;
+				goto done;
+			}
+
+			if(leftToTake < invData[t].ammount)
+			{
+				invData[t].ammount -= leftToTake;
+				goto done;
+			}
+
+			if(leftToTake > invData[t].ammount)
+			{
+				invData[t].itemIndex = -1;
+				leftToTake -= invData[t].ammount;
+				invData[t].ammount = 0;
+			}
+
+		}
+	}
+
+
+	// as many items taken as possible but not as many as requested
 	return false;
+
+
+	done: // items removed successfully (yay for spelling)
+	return true;
 }

@@ -9,6 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+#include <iostream>
 
 
 
@@ -64,6 +65,7 @@ public:
 
 	// Item Database
 	std::vector<dbItem> ITEM_DB;
+	dbItem getItem(unsigned int position);
 	void pop();
 };
 

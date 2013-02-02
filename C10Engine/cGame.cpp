@@ -27,6 +27,9 @@ bool cGame::startGame()
 	// set the target fps
 	GlobalData.windowMain.setFramerateLimit(GAME_FPS);
 
+	// Populate the item database
+	GlobalData.pop();
+
 	// load the player resources
 	Player.loadResources(&GlobalData);
 

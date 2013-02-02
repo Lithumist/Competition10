@@ -36,7 +36,18 @@ dbItem cGlobalData::getItem(unsigned int position)
 	if(position < 0)
 	{
 		std::cout << "cGlobalData::getItem trying to access an empty inventory slot\n";
+		dbItem er = makeDbItem("ERROR","ERROR",0,false);
+		return er;
 	}
+
+	if(position > ITEM_DB.size())
+	{
+		std::cout << "cGlobalData::getItem trying to access an undefined item\n";
+		dbItem er = makeDbItem("U ITEM","U ITEM",0,false);
+		return er;
+	}
+
+	return ITEM_DB[position];
 }
 
 

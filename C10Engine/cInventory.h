@@ -11,6 +11,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <SFML/Graphics.hpp>
 #include "cGlobalData.h"
 
