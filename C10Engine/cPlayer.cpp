@@ -50,7 +50,10 @@ void cPlayer::initialize()
 	Inventory.initialize(GlobalData);
 
 	Inventory.giveItem(0,100);
-	Inventory.takeItem(0,60);
+	Inventory.giveItem(0,600);
+	Inventory.giveItem(1,25);
+	Inventory.giveItem(0,9999);
+	//Inventory.takeItem(0,60);
 }
 
 

@@ -194,35 +194,84 @@ int cInventory::getFirstFreeSlot()
 // hasItem
 bool cInventory::hasItem(int index)
 {
-	bool has = false;
 	for(int t=0; t<INVENTORY_SLOTS; t++)
 	{
 		if(invData[t].itemIndex == index)
-			has = true;
+			return true;
 	}
 
-	return has;
+	return false;
 }
 
 // give item
 bool cInventory::giveItem(int index, int number)
 {
-	int needToAdd;
+	int needToAdd = number;
+	int max_stack = GlobalData->getItem(index).max_stack;
+
 	if(hasItem(index))
 	{
 
+		for(int t=0; t<INVENTORY_SLOTS; t++)
+		{
+			if(invData[t].itemIndex == index)
+			{
+				if(needToAdd == max_stack-invData[t].ammount)
+				{
+					invData[t].ammount = max_stack;
+					goto done;
+				}
 
-		
+				if(needToAdd < max_stack-invData[t].ammount)
+				{
+					invData[t].ammount += needToAdd;
+					goto done;
+				}	
 
+				if(needToAdd > max_stack-invData[t].ammount)
+				{
+					needToAdd -= max_stack-invData[t].ammount;
+					invData[t].ammount = max_stack;
+				}
+			}
+		}
 
 	}
 	else
 	{
-		unsigned int slot = getFirstFreeSlot();
-		invData[slot].itemIndex = index;
-		invData[slot].ammount = number;
+		//unsigned int slot = getFirstFreeSlot();
+		for(int t=0; t<INVENTORY_SLOTS; t++)
+		{
+			if(invData[t].itemIndex == -1)
+			{
+				invData[t].itemIndex = index;
+				
+				if(needToAdd == max_stack-invData[t].ammount)
+				{
+					invData[t].ammount = max_stack;
+					goto done;
+				}
+
+				if(needToAdd < max_stack-invData[t].ammount)
+				{
+					invData[t].ammount += needToAdd;
+					goto done;
+				}
+
+				if(needToAdd > max_stack-invData[t].ammount)
+				{
+					needToAdd -= max_stack-invData[t].ammount;
+					invData[t].ammount = max_stack;
+				}
+			
+			}
+		}
 	}
+
 	return false;
+
+	done:
+	return true;
 }
 
 // takeItem
@@ -232,7 +281,6 @@ bool cInventory::takeItem(int index, int number)
 		return false;
 
 	int leftToTake = number;
-	int max_stack = GlobalData->getItem(index).max_stack;
 
 	for(int t=INVENTORY_SLOTS-1; t>=0; t--) // loop backwards
 	{
@@ -266,6 +314,6 @@ bool cInventory::takeItem(int index, int number)
 	return false;
 
 
-	done: // items removed successfully (yay for spelling)
+	done: // items removed
 	return true;
 }
